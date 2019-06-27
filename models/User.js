@@ -5,20 +5,22 @@ const userSchema = new Schema({
   name: String,
   username: { type: String, index: true, unique: true },
   password: { type: String, required: true },
-  avatar: String,
-  createAt: Date
+  avatar: { type: String, default: "noimage.jpg" },
+  createAt: { type: Date, default: Date.now() },
+  role: { type: Number, default: 1 }, // 1: Admin
+  isActive: { type: Boolean, default: true }
 });
-customerSchema.statics.authenticate = async (email,password) => {
-  
-};
-customerSchema.pre("save", function(next) {
+userSchema.pre("save", function(next) {
   let now = Date.now();
   if (!this.createAt) {
     this.createAt = now;
   }
   let user = this;
-  this.password = bcrypt.hashSync(user.password, process.env.SECRET_KEY);
+  this.password = bcrypt.hashSync(user.password, 10);
+  // console.log(this.password);
   next();
 });
 mongoose.model("users", userSchema);
+const User = mongoose.model("users");
+
 module.exports = userSchema;

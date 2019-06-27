@@ -6,7 +6,8 @@ const customerSchema = new Schema({
   email: { type: String, index: true, unique: true },
   password: String,
   avatar: String,
-  createAt: Date
+  createAt: Date,
+  role: { type: Number, default: 1 } // 1: customer
 });
 customerSchema.pre("save", function(next) {
   let now = Date.now();
@@ -17,4 +18,3 @@ customerSchema.pre("save", function(next) {
 });
 mongoose.model("customers", customerSchema);
 module.exports = customerSchema;
-  

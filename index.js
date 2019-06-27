@@ -1,8 +1,9 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+
+mongoose.set("useCreateIndex", true);
 const bodyParser = require("body-parser");
-const session = require("express-session");
 // setup timezone
 require("./configs/setupTimezone");
 
@@ -14,20 +15,13 @@ mongoose.Promise = global.Promise;
 // connect to mongoDB
 require("./configs/mongoConnection");
 
+// allow use folder uploads
+app.use('/uploads',express.static('uploads'));
+
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
     extended: true
-  })
-);
-
-// use session
-app.use(
-  session({
-    secret: "BanhMiphaicopate",
-    resave: true,
-    saveUninitialized: false,
-    cookie: { maxAge: 60000 }
   })
 );
 
@@ -40,6 +34,8 @@ app.use(function(req, res, next) {
   );
   next();
 });
+
+
 // default route
 app.get("/", function(req, res) {
   return res.send({ error: true, message: "hello" });
@@ -47,9 +43,12 @@ app.get("/", function(req, res) {
 
 // convert all schema to models
 require("./models/Product");
+require("./models/User");
+require("./models/Manufacturer");
 // load all routes
 require("./routes/productRoutes")(app);
-
+require("./routes/userRoutes")(app);
+require("./routes/manufacturerRoutes")(app);
 // set port
 const port = process.env.PORT || 3000;
 app.listen(port, function() {

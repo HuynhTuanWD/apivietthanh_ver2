@@ -5,4 +5,4 @@ const manufacturerSchema = new Schema({
   image: { type: String, default: "noimage.jpg" }
 });
 mongoose.model("manufacturers", manufacturerSchema);
-module.exports = colorSchema;
+module.exports = manufacturerSchema;
