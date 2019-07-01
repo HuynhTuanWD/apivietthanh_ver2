@@ -5,7 +5,7 @@ const colorSchema = require("./Color");
 const uniqueSlug = require('unique-slug')
 const productSchema = new Schema({
   name: String,
-  images: { type: [String], default: ["noimage.jpg"] },
+  images: { type: [String], default: [] },
   slug: String,
   price: { type: Number, default: 0 },
   discount: { type: Number, default: 0 },

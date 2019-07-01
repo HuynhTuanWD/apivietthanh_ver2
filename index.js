@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 
 mongoose.set("useCreateIndex", true);
+mongoose.set('useFindAndModify', false);
 const bodyParser = require("body-parser");
 // setup timezone
 require("./configs/setupTimezone");
