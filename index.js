@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 
 mongoose.set("useCreateIndex", true);
-mongoose.set('useFindAndModify', false);
+mongoose.set("useFindAndModify", false);
 const bodyParser = require("body-parser");
 // setup timezone
 require("./configs/setupTimezone");
@@ -16,15 +16,11 @@ mongoose.Promise = global.Promise;
 // connect to mongoDB
 require("./configs/mongoConnection");
 
-// allow use folder uploads
-app.use('/uploads',express.static('uploads'));
-
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true
-  })
-);
+
+// allow use folder uploads
+app.use("/uploads", express.static("uploads"));
 
 // allow origin *
 app.use(function(req, res, next) {
@@ -33,9 +29,9 @@ app.use(function(req, res, next) {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
+  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
   next();
 });
-
 
 // default route
 app.get("/", function(req, res) {
@@ -46,10 +42,12 @@ app.get("/", function(req, res) {
 require("./models/Product");
 require("./models/User");
 require("./models/Manufacturer");
+require("./models/Category")
 // load all routes
 require("./routes/productRoutes")(app);
 require("./routes/userRoutes")(app);
 require("./routes/manufacturerRoutes")(app);
+require("./routes/categoryRoutes")(app);
 // set port
 const port = process.env.PORT || 3000;
 app.listen(port, function() {

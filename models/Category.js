@@ -3,11 +3,10 @@ const moment = require('moment');
 const { Schema } = mongoose;
 
 const categorySchema = new Schema({
-  name: String,
+  title: String,
   slug: String,
   order: Number,
-  isActive: { type: Number, default: 1 },
-  _category: { type: Schema.Types.ObjectId, ref: "Category" }
+  parent: { type: Schema.Types.ObjectId, ref: "Category",default:null }
 });
 function slugWithDate(text) {
   let myText = text
@@ -23,8 +22,8 @@ function slugWithDate(text) {
   return formatted + myText;
 }
 categorySchema.pre("save", function(next) {
-  this.slug = slugWithDate(this.name);
+  this.slug = slugWithDate(this.title);
   next();
 });
-mongoose.model("comments", commentSchema);
+mongoose.model("categories", categorySchema);
 module.exports = categorySchema;
