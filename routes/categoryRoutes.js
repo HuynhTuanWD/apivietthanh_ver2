@@ -15,7 +15,7 @@ module.exports = app => {
     res.status(200).send();
   });
   app.get("/api/categories", async (req, res) => {
-    let categories = await Category.find();
+    let categories = await Category.find().sort({ order: 1 });
     res.status(200).send(categories);
   });
   app.post("/api/categories/deletes", async (req, res) => {
@@ -30,4 +30,12 @@ module.exports = app => {
     await Category.deleteMany({ _id: { $in: category_ids } });
     res.status(200).send("delete success");
   });
+  app.post("/api/categories",async (req,res)=>{
+    let {categories} = req.body;
+    console.log(categories);
+    for(let i=0;i<categories.length;i++){
+      await Category.findByIdAndUpdate(categories[i]._id,categories[i]);
+    }
+    res.status(200).send("update category ok");
+  })
 };
