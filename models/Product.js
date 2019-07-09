@@ -22,7 +22,7 @@ const productSchema = new Schema({
   _user: { type: Schema.Types.ObjectId, ref: "User" },
   isLabelNew: Boolean,
   isLabelPrice: Boolean,
-  departments: [{ type: Schema.Types.ObjectId, ref: "Department" }],
+  _departments: [{ type: Schema.Types.ObjectId, ref: "Department" }],
   isActive: { type: Boolean, default: true },
   createdAt: Date,
   updatedAt: Date

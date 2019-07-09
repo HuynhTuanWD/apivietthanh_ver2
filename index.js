@@ -44,12 +44,14 @@ require("./models/User");
 require("./models/Manufacturer");
 require("./models/Category");
 require("./models/Color");
+require("./models/Department");
 // load all routes
 require("./routes/productRoutes")(app);
 require("./routes/userRoutes")(app);
 require("./routes/manufacturerRoutes")(app);
 require("./routes/categoryRoutes")(app);
 require("./routes/colorRoutes")(app);
+require("./routes/departmentRoutes")(app);
 // set port
 const port = process.env.PORT || 3000;
 app.listen(port, function() {

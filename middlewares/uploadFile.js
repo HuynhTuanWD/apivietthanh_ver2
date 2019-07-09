@@ -21,7 +21,9 @@ uploadArray = (dir, name, limit) => {
       cb(null, dir);
     },
     filename: function(req, file, cb) {
-      cb(null, file.fieldname + "-" + Date.now());
+      let path_file = path.parse(file.originalname);
+      let filename = path_file.name+'-'+readCount()+path_file.ext;
+      cb(null, filename);
     }
   });
   let upload = multer({ storage: storage });
@@ -30,5 +32,6 @@ uploadArray = (dir, name, limit) => {
 module.exports = {
   uploadUserAvatar: uploadOne,
   uploadManuImage: uploadOne,
-  uploadProductImage: uploadOne
+  uploadProductImage: uploadOne,
+  uploadProductImages: uploadArray
 };
