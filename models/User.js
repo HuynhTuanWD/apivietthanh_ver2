@@ -5,7 +5,7 @@ const userSchema = new Schema({
   name: String,
   username: { type: String, index: true, unique: true },
   password: { type: String, required: true },
-  avatar: { type: String, default: "noimage.jpg" },
+  avatar: { type: String, default: "" },
   createAt: { type: Date, default: Date.now() },
   role: { type: Number, default: 1 }, // 1: Admin
   isActive: { type: Boolean, default: true }

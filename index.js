@@ -29,7 +29,7 @@ app.use(function(req, res, next) {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
-  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS");
   next();
 });
 
@@ -42,12 +42,14 @@ app.get("/", function(req, res) {
 require("./models/Product");
 require("./models/User");
 require("./models/Manufacturer");
-require("./models/Category")
+require("./models/Category");
+require("./models/Color");
 // load all routes
 require("./routes/productRoutes")(app);
 require("./routes/userRoutes")(app);
 require("./routes/manufacturerRoutes")(app);
 require("./routes/categoryRoutes")(app);
+require("./routes/colorRoutes")(app);
 // set port
 const port = process.env.PORT || 3000;
 app.listen(port, function() {

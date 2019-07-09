@@ -25,14 +25,11 @@ module.exports = app => {
   });
   app.delete("/api/categories", async (req, res) => {
     const { category_ids } = req.body;
-    console.log(req.body);
-    console.log(category_ids);
     await Category.deleteMany({ _id: { $in: category_ids } });
     res.status(200).send("delete success");
   });
   app.post("/api/categories",async (req,res)=>{
     let {categories} = req.body;
-    console.log(categories);
     for(let i=0;i<categories.length;i++){
       await Category.findByIdAndUpdate(categories[i]._id,categories[i]);
     }

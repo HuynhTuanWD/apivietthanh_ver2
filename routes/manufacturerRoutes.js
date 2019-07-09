@@ -5,7 +5,7 @@ const multer = require("multer");
 const upload = multer();
 const _ = require("lodash");
 module.exports = app => {
-  app.get("/api/manufacturer", async (req, res) => {
+  app.get("/api/manufacturers", async (req, res) => {
     try {
       let manu = await Manufacturer.find();
       res.send(_.reverse(manu));
@@ -23,7 +23,6 @@ module.exports = app => {
     // res.send(data);
   });
 
-  // sửa lại upload trước lấy url rồi insert sau
   app.post(
     "/api/manufacturer",
     uploadManuImage("uploads/manu", "manuImage"),

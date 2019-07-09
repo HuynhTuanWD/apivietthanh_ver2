@@ -29,5 +29,6 @@ uploadArray = (dir, name, limit) => {
 };
 module.exports = {
   uploadUserAvatar: uploadOne,
-  uploadManuImage: uploadOne
+  uploadManuImage: uploadOne,
+  uploadProductImage: uploadOne
 };
