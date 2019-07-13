@@ -39,5 +39,5 @@ function slugWithDate(text) {
     .replace(/-+$/, ""); // Trim - from end of text
   return myText + uniqueSlug();
 }
-mongoose.model("products", productSchema);
+mongoose.model("Product", productSchema);
 module.exports = productSchema;

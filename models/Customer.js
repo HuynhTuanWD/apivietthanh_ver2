@@ -16,5 +16,5 @@ customerSchema.pre("save", function(next) {
   }
   next();
 });
-mongoose.model("customers", customerSchema);
+mongoose.model("Customer", customerSchema);
 module.exports = customerSchema;

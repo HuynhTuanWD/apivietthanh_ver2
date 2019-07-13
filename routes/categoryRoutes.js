@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Category = mongoose.model("categories");
+const Category = mongoose.model("Category");
 module.exports = app => {
   app.post("/api/category", async (req, res) => {
     const { title } = req.body;

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Department = mongoose.model("departments");
+const Department = mongoose.model("Department");
 const _ = require("lodash");
 module.exports = app => {
   app.get("/api/departments", async (req, res) => {

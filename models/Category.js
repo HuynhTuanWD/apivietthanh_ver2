@@ -25,5 +25,5 @@ categorySchema.pre("save", function(next) {
   this.slug = slugWithDate(this.title);
   next();
 });
-mongoose.model("categories", categorySchema);
+mongoose.model("Category", categorySchema);
 module.exports = categorySchema;

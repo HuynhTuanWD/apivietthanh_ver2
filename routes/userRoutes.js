@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const User = mongoose.model("users");
+const User = mongoose.model("User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const authUser = require("../middlewares/authUser");

@@ -4,5 +4,5 @@ const manufacturerSchema = new Schema({
   name: String,
   image: { type: String, default: "" }
 });
-mongoose.model("manufacturers", manufacturerSchema);
+mongoose.model("Manufacturer", manufacturerSchema);
 module.exports = manufacturerSchema;

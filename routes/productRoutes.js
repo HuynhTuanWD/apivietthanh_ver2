@@ -1,14 +1,18 @@
 const mongoose = require("mongoose");
-const Product = mongoose.model("products");
+const Product = mongoose.model("Product");
 const jwt = require("jsonwebtoken");
+const _ = require("lodash");
 const {
   uploadProductImage,
   uploadProductImages
 } = require("../middlewares/uploadFile");
 module.exports = app => {
   app.get("/api/products", async (req, res) => {
-    let products = await Product.find();
-    res.send(products);
+    let products = await Product.find()
+      .populate("_categories")
+      // .populate("_departments")
+      // .populate("_manufacturer");
+    res.send(_.reverse(products));
   });
   app.post(
     "/api/product/image",

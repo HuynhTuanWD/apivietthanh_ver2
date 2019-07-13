@@ -6,5 +6,5 @@ const colorSchema = new Schema({
   hex: String
 });
 
-mongoose.model("colors", colorSchema);
+mongoose.model("Color", colorSchema);
 module.exports = colorSchema;

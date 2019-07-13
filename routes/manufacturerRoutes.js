@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Manufacturer = mongoose.model("manufacturers");
+const Manufacturer = mongoose.model("Manufacturer");
 const { uploadManuImage } = require("../middlewares/uploadFile");
 const multer = require("multer");
 const upload = multer();

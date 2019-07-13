@@ -9,5 +9,5 @@ const orderSchema = new Schema({
   orderDetails: [orderDetailSchema]
 });
 
-mongoose.model("orders", orderSchema);
+mongoose.model("Order", orderSchema);
 module.exports = orderSchema;

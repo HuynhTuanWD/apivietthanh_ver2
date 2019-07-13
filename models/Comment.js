@@ -16,5 +16,5 @@ commentSchema.pre("save", function(next) {
   }
   next();
 });
-mongoose.model("comments", commentSchema);
+mongoose.model("Comment", commentSchema);
 module.exports = commentSchema;

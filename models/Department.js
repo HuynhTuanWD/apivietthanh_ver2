@@ -5,5 +5,5 @@ const departmentSchema = new Schema({
   address: String
 });
 
-mongoose.model("departments", departmentSchema);
+mongoose.model("Department", departmentSchema);
 module.exports = departmentSchema;

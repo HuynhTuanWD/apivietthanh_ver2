@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Color = mongoose.model("colors");
+const Color = mongoose.model("Color");
 const _ = require("lodash");
 module.exports = app => {
   app.post("/api/color", async (req, res) => {

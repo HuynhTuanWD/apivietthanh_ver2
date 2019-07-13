@@ -6,5 +6,5 @@ const orderDetailSchema = new Schema({
   price: Number,
   images: { type: [String], default: [] },
 });
-mongoose.model("orderDetails", orderDetailSchema);
+mongoose.model("OrderDetail", orderDetailSchema);
 module.exports = orderDetailSchema;

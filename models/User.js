@@ -11,7 +11,6 @@ const userSchema = new Schema({
   isActive: { type: Boolean, default: true }
 });
 // update ko chạy, phải sử dụng hàm presave 
-mongoose.model("users", userSchema);
-const User = mongoose.model("users");
+mongoose.model("User", userSchema);
 
 module.exports = userSchema;
