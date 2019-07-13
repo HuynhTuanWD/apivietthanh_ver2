@@ -23,6 +23,7 @@ module.exports = app => {
     },
     async (req, res, next) => {
       let { name, username, password, role, image } = req.body;
+      password = bcrypt.hashSync(password, 10);
       try {
         let user = new User({
           name,
@@ -50,10 +51,10 @@ module.exports = app => {
       req.body.avatar = image_url;
       next();
     },
-    async (req, res, next) => {
+    async (req, res) => {
       let { _id, name, username, password, role, avatar } = req.body;
-      console.log(req.body);
       try {
+        password = bcrypt.hashSync(password, 10);
         if (avatar == "") {
           await User.findByIdAndUpdate(_id, {
             name,

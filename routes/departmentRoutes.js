@@ -24,6 +24,14 @@ module.exports = app => {
       res.status(400).send("invalid department");
     }
   });
+  app.put("/api/department:_id", async (req, res) => {
+    const { _id } = req.params;
+    try {
+      await Department.findByIdAndUpdate(_id,req.body)
+    } catch (err) {
+      
+    }
+  });
   app.delete("/api/department/:id", async (req, res) => {
     let _id = req.params.id;
     try {

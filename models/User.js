@@ -10,16 +10,7 @@ const userSchema = new Schema({
   role: { type: Number, default: 1 }, // 1: Admin
   isActive: { type: Boolean, default: true }
 });
-userSchema.pre("save", function(next) {
-  let now = Date.now();
-  if (!this.createAt) {
-    this.createAt = now;
-  }
-  let user = this;
-  this.password = bcrypt.hashSync(user.password, 10);
-  // console.log(this.password);
-  next();
-});
+// update ko chạy, phải sử dụng hàm presave 
 mongoose.model("users", userSchema);
 const User = mongoose.model("users");
 

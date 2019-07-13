@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-const moment = require('moment-timezone');
+const moment = require("moment-timezone");
 const { Schema } = mongoose;
 const colorSchema = require("./Color");
-const uniqueSlug = require('unique-slug')
+const uniqueSlug = require("unique-slug");
 const productSchema = new Schema({
   name: String,
   images: { type: [String], default: [] },
@@ -13,9 +13,9 @@ const productSchema = new Schema({
   colors: [colorSchema],
   _manufacturer: { type: Schema.Types.ObjectId, ref: "Manufacturer" },
   _categories: [{ type: Schema.Types.ObjectId, ref: "Category" }],
-  description: String,
-  shortDescription: String,
-  technicalSpec: String,
+  description: Object,
+  shortDescription: Object,
+  technicalSpec: Object,
   _comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
   quantity: Number,
   status: { type: Number, default: 1 },
@@ -24,8 +24,8 @@ const productSchema = new Schema({
   isLabelPrice: Boolean,
   _departments: [{ type: Schema.Types.ObjectId, ref: "Department" }],
   isActive: { type: Boolean, default: true },
-  createdAt: Date,
-  updatedAt: Date
+  createdAt: { type: Date, default: Date.now() },
+  updatedAt: { type: Date, default: Date.now() }
 });
 // dùng hàm find({ subjects : req.params.subjectId }) subjects tương ứng với array ObjectId
 function slugWithDate(text) {
@@ -37,18 +37,7 @@ function slugWithDate(text) {
     .replace(/\-\-+/g, "-") // Replace multiple - with single -
     .replace(/^-+/, "") // Trim - from start of text
     .replace(/-+$/, ""); // Trim - from end of text
-  return myText+uniqueSlug();
+  return myText + uniqueSlug();
 }
-productSchema.pre("save", function(next) {
-  this.slug = slugWithDate(this.name);
-  let now = date.now();
-  this.updatedAt = now;
-  // Set a value for createdAt only if it is null
-  if (!this.createdAt) {
-    this.createdAt = now;
-  }
-  // Call the next function in the pre-save chain
-  next();
-});
 mongoose.model("products", productSchema);
 module.exports = productSchema;
