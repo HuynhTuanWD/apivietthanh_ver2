@@ -101,6 +101,23 @@ module.exports = app => {
     }
     return res.status(401).send({ message: "Login fail!", err: true });
   });
+  app.get("/api/user/userProfile", async (req, res) => {
+    res.status(400).send("invalid token");
+    // let token = req.headers["authorization"];
+    // if(token){
+    //   try{
+    //     let jwt_user = jwt.verify(token, process.env.SECRET_KEY);
+    //     console.log("jwtuser", jwt_user);
+    //     let user = await User.findOne({ _id: jwt_user.userId, isActive: true });
+    //     console.log(user);
+    //   }catch(err){
+    //     res.status(400).send("invalid token");
+    //   }
+    // }else{
+    //   res.status(400).send("invalid token");
+    // }
+   
+  });
   app.get("/api/user/isLogin", authUser([1]), async (req, res) => {
     res.status(200).send({ err: false });
   });
@@ -114,6 +131,7 @@ module.exports = app => {
     let user = await User.findById(req.params.id, "name username avatar");
     res.status(200).send(user);
   });
+
   app.post("/api/user/delete", async (req, res) => {
     await User.deleteMany();
   });
